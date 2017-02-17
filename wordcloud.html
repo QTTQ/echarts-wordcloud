@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+
+	<head>
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#tb {
+				width: 1300px;
+				height: 900px;
+				margin:50px  auto;
+			}
+			
+			table {
+				/*border-right: 1px solid #804040;
+				border-bottom: 1px solid #804040;*/
+				border-collapse: collapse;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				text-align: center;
+				border: 1px skyblue solid;
+				background-color: #1DAFFA;
+				display: block;
+				background-color: #fff;
+				overflow: hidden;
+				display: block;
+				margin-right: 200px;
+			}
+			
+			.theader th {
+				background: #1DAFFA;
+			}
+			/*th {
+				background: #1DAFFA;
+				margin: ;
+			}*/
+			
+			table tr td {
+				border-bottom: #FF0000 solid 2px;
+			}
+			
+			tr {
+				width: 200px;
+				height: 30px;
+				border-bottom: 2px solid #d4dde4;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="tb" style="display: flex;">
+			<table>
+
+				<tr class="theader">
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+
+			</table>
+
+			<div style="height:450px;width:600px;border: 1px red solid;float: right;display: block;border-top-left-radius: 10px;
+				border-top-right-radius: 10px;overflow: hidden;">
+				<div style="height:50px;width:600px;solid;background:#1DAFFA ;">
+					<span style="line-height: 50px;display: inline-block;margin-left: 270px;">hhha</span>
+				</div>
+				<div id="charts" style="height:400px;width:600px;">
+
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+		<script type="text/javascript">
+			function createRandomItemStyle(d) {
+				d = d || Math.floor((Math.random() * 20) + 1);
+				var colors = ['#EDD8CB', '#BFC0C3', '#F59595', '#8ECA51', '#DFE0E1', '#F6CBAD', '#BAD4AD', '#75839D', '#89A9C8', '#BFC0C3', '#F59595', '#8ECA51', '#DFE0E1', '#f3f9f1', '#BAD4AD', '#75839D', '#89A9C8', '#BFC0C3'];
+				if(d > colors.length) {
+					d = 0;
+				}
+				return {
+					normal: {
+						color: colors[d]
+					}
+				};
+			}
+
+			require.config({
+				paths: {
+					echarts: "http://echarts.baidu.com/build/dist"
+				}
+			})
+			require(["echarts/echarts", "echarts/chart/wordCloud"], function(ec) {
+				var myEchart = ec.init(document.getElementById("charts"));
+
+				function createRandomItemStyle() {
+					return {
+						normal: {
+							color: 'rgb(' + [
+								Math.round(Math.random() * 160),
+								Math.round(Math.random() * 160),
+								Math.round(Math.random() * 160)
+							].join(',') + ')'
+						}
+					};
+				}
+
+				option = {
+					title: {
+						text: 'Google Trends',
+						link: 'http://www.google.com/trends/hottrends'
+					},
+					tooltip: {
+						show: true
+					},
+					series: [{
+						name: 'Google Trends',
+						type: 'wordCloud',
+						size: ['80%', '80%'],
+						textRotation: [0, 45, 90, -45],
+						textPadding: 0,
+						autoSize: {
+							enable: true,
+							minSize: 14
+						},
+						data: [{
+							name: "Sam S Club",
+							value: 10000,
+							itemStyle: {
+								normal: {
+									color: 'black'
+								}
+							}
+						}, {
+							name: "Macys",
+							value: 6181,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Amy Schumer",
+							value: 4386,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Jurassic World",
+							value: 4055,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Charter Communications",
+							value: 2467,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Chick Fil A",
+							value: 2244,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Planet Fitness",
+							value: 1898,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Pitch Perfect",
+							value: 1484,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Express",
+							value: 1112,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Home",
+							value: 965,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Johnny Depp",
+							value: 847,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Lena Dunham",
+							value: 582,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Lewis Hamilton",
+							value: 555,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "KXAN",
+							value: 550,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Mary Ellen Mark",
+							value: 462,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Farrah Abraham",
+							value: 366,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Rita Ora",
+							value: 360,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Serena Williams",
+							value: 282,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "NCAA baseball tournament",
+							value: 273,
+							itemStyle: createRandomItemStyle()
+						}, {
+							name: "Point Break",
+							value: 265,
+							itemStyle: createRandomItemStyle()
+						}]
+					}]
+				};
+
+				//				var option = {
+				//			    tooltip: {
+				//			        show: true
+				//			    },
+				//			    grid:{ x:20,  y:0,  y2:4  },
+				//			    series: [{
+				//			        name: '标签',
+				//			        type: 'wordCloud',
+				//			        size: ['90%', '40%'],  
+				//					textRotation : [0,10, 90, -10],//[0, 90],  
+				//					textPadding: 6,  
+				//					autoSize: { 
+				//						enable: true,  
+				//						minSize: 20  
+				//					},
+				//			        data: [
+				//			            {
+				//			                name: "中国",
+				//			                value: 10000,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "购物",
+				//			                value: 6181,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "阿里巴巴",
+				//			                value: 4386,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "开源中国",
+				//			                value: 4055,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "JFinal",
+				//			                value: 2467,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "逛街",
+				//			                value: 2244,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "Coding",
+				//			                value: 1898,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "网易",
+				//			                value: 1484,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "养猪",
+				//			                value: 1112,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "百度",
+				//			                value: 965,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "360",
+				//			                value: 847,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "黑龙江",
+				//			                value: 582,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "丽江",
+				//			                value: 555,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "张家界",
+				//			                value: 550,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "珠海",
+				//			                value: 462,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "活动",
+				//			                value: 366,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "淘宝",
+				//			                value: 360,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "京东",
+				//			                value: 282,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "中间件",
+				//			                value: 273,
+				//			                itemStyle: createRandomItemStyle()
+				//			            },
+				//			            {
+				//			                name: "MySQL",
+				//			                value: 265,
+				//			                itemStyle: createRandomItemStyle()
+				//			            }
+				//			        ]
+				//			    }]
+				//			};
+				myEchart.setOption(option);
+			});
+		</script>
+
+	</body>
+
+</html>
